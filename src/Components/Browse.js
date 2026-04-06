@@ -9,7 +9,7 @@ const Browse = () => {
     API_OPTIONS
     );
     const json = await data.json();
-    console.log(json);
+    console.log(json.results);
   };
 
   // Make an api call inside useEffect because we only want to call at once
