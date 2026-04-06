@@ -5,23 +5,6 @@ import { useDispatch } from 'react-redux';
 import { addNowPlayingMovies } from 'Utils/moviesSlice';
 
 const Browse = () => {
-  const dispatch = useDispatch();
-  
-  const getNowPlayingMovies = async () => {
-    const data = await fetch ('https://api.themoviedb.org/3/movie/now_playing',
-    API_OPTIONS
-    );
-    const json = await data.json();
-    console.log(json.results);
-    dispatch(addNowPlayingMovies(json.results));
-  };
-
-  // Make an api call inside useEffect because we only want to call at once
-  useEffect(()=>{
-  getNowPlayingMovies();
-  },[])
-
-
 
   return (
     <div>
