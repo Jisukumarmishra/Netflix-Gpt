@@ -9,9 +9,14 @@ const MainContainer = () => {
   // if(movies === null) return ; or
   if(!movies) return;
   const mainmovies = movies[0];
+  console.log(mainmovies);
+  
+  // from main movies we abstracted these two thinga
+  const {original_title, overview} = mainmovies;
+
   return (
     <div>
-    <VideoTitle/>
+    <VideoTitle title ={original_title} overview={overview}/>
     <VideoBackGround/>
     </div>
     

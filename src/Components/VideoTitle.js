@@ -1,8 +1,15 @@
 import React from 'react'
 
-const VideoTitle = () => {
+const VideoTitle = ({title, overview}) => {
   return (
-    <div>VideoTitle</div>
+    <div>
+      <h1>{title}</h1>
+      <p>{overview}</p>
+      <div>
+        <button>plau</button>
+        <button>More Info</button>
+      </div>
+    </div>
   )
 }
 
