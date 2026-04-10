@@ -15,3 +15,9 @@ MainContainer
 SecondaryContainer
  -MoviesList * n
  -cards*n
+
+# Build Secondary Container
+MoviesList -- Popular
+ --MovieCard * n
+MoviesList -- Trending
+...
