@@ -1,20 +1,32 @@
 import React from 'react'
 
-const VideoTitle = ({title, overview}) => {
+const VideoTitle = ({ title, overview }) => {
   return (
-    <div className='w-full px-6 md:px-12 lg:px-20 pt-32 md:pt-44 pb-10 bg-gradient-to-r from-black via-black/80 to-transparent text-white'>
-      <h1 className='max-w-3xl text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]'>
+    <div className="w-screen aspect-video pt-[15%] md:pt-[20%] px-6 md:px-16 lg:px-24 absolute z-10 text-white bg-gradient-to-r from-black/90 via-black/50 to-transparent">
+      <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold drop-shadow-2xl w-full md:w-1/2">
         {title}
       </h1>
-      <p className='mt-4 max-w-2xl text-sm md:text-base lg:text-lg leading-relaxed text-gray-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] line-clamp-3 md:line-clamp-none'>
+      <p className="hidden md:block py-4 md:py-6 text-sm md:text-lg text-gray-100 font-medium drop-shadow-xl w-full md:w-1/3 line-clamp-4">
         {overview}
       </p>
-      <div className='mt-7 flex items-center gap-3 md:gap-4'>
-        <button className='rounded-md bg-white text-black px-6 md:px-8 py-2.5 md:py-3 text-base md:text-lg font-semibold hover:bg-white/85 transition-colors duration-200'>plau</button>
-        <button className='rounded-md bg-gray-500/70 text-white px-6 md:px-8 py-2.5 md:py-3 text-base md:text-lg font-semibold hover:bg-gray-400/70 transition-colors duration-200 backdrop-blur-sm'>More Info</button>
+      <div className="flex items-center gap-3 mt-2 md:mt-0">
+        <button className="flex items-center gap-2 bg-white text-black py-1.5 md:py-2.5 px-4 md:px-8 text-sm md:text-xl font-bold rounded hover:bg-white/80 transition-colors">
+          <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 md:w-8 md:h-8">
+            <path d="M6 4l15 8-15 8V4z" />
+          </svg>
+          Play
+        </button>
+        <button className="hidden md:flex items-center gap-2 bg-[rgba(109,109,110,0.7)] text-white py-2.5 px-8 text-xl font-bold rounded hover:bg-[rgba(109,109,110,0.4)] transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4" />
+            <path d="M12 8h.01" />
+          </svg>
+          More Info
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default VideoTitle
