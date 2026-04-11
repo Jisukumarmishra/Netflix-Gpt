@@ -5,8 +5,11 @@ import SecondaryConatainer from './SecondaryConatainer';
 import usePopularMovies from 'hooks/usepopularMovies';
 import useTopRatedMovies from 'hooks/useTopRatedMovies';
 import useUpcomingMovies from 'hooks/useUpcomingMovies';
+import GptSearch from './GptSearch';
 
 const Browse = () => {
+
+  <GptSearch/>
 
  useNowPlayingMovies();
  usePopularMovies();

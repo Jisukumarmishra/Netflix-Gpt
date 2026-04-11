@@ -3,7 +3,7 @@
 - Confihured Talwindss
 
 
-# Features
+# Building AuthenTication Features
 Login/Sign Up
   - Sign In / Sign up Form
   
@@ -21,3 +21,5 @@ MoviesList -- Popular
  --MovieCard * n
 MoviesList -- Trending
 ...
+
+# Building GPT Search Features

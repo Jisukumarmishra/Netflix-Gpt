@@ -73,6 +73,7 @@ const Header = () => {
 
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-48 bg-black bg-opacity-90 border border-gray-700 rounded-sm shadow-xl flex flex-col py-2 text-sm">
+              <button className='bg-black text-white bg-center'>GPT Search</button>
               <button className="px-4 py-2 text-white text-left hover:underline">Manage Profiles</button>
               <button className="px-4 py-2 text-white text-left hover:underline">Account</button>
               <button className="px-4 py-2 text-white text-left hover:underline border-b border-gray-700 pb-3">Help Centre</button>
@@ -90,34 +91,4 @@ const Header = () => {
   )
 }
 
-export default Header
-
-// const Body = () => {
-  
-//   const appRouter = createBrowseRouter([
-//     {
-//      path:"/",
-//      element:<Login/>
-//     },
-    
-//     {
-//      path:"/browse",
-//      element:<Browse/>
-//     }
-
-//     // {
-//     //  path:"/",
-//     //  element:<Body/>
-//     // },
-
-//     //     {
-//     //  path:"/",
-//     //  element:<Body/>
-//     // }
-    
-//   ])
-
-//   return (
-//     <div><routerprovider router = {appRouter} /></div>
-//   )
-// }
+export default Header;
