@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from 'Utils/userSlice';
 import { auth } from 'Utils/fireBase';
 import { netLOGO, USER_AVTAR } from 'Utils/constants';
+import { toggleGptSearchView } from 'Utils/gptSlice';
 
 
 const Header = () => {
@@ -23,7 +24,7 @@ const Header = () => {
     });
   };
 
-  // this useEffect helps to naviagate on every where in poage we not need to right in seperate component
+// this useEffect helps to naviagate on every where in poage we not need to right in seperate component
   useEffect(()=>{ 
   const unsubscribe = onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -46,6 +47,11 @@ const Header = () => {
   // unsubscribe when component
   return () => unsubscribe(); // we will unsubscribe it when my header component is unload
 }, []);
+
+const handleGptSearchClick = () => {
+  // Toggle GPT Search
+  dispatch(toggleGptSearchView());
+}
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -73,15 +79,17 @@ const Header = () => {
 
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-48 bg-black bg-opacity-90 border border-gray-700 rounded-sm shadow-xl flex flex-col py-2 text-sm">
-              <button className='bg-black text-white bg-center'>GPT Search</button>
+              <button  className='px-4 py-2  bg-black text-white text-left hover:underline  font-bold
+              onclick = {handleGptSearch}
+              '>GPT Search</button>
               <button className="px-4 py-2 text-white text-left hover:underline">Manage Profiles</button>
               <button className="px-4 py-2 text-white text-left hover:underline">Account</button>
               <button className="px-4 py-2 text-white text-left hover:underline border-b border-gray-700 pb-3">Help Centre</button>
               <button 
                 onClick={handleSignOut} 
-                className="px-4 py-2 mt-1 text-white text-left font-bold hover:underline"
-              >
-                Sign out of Netflix
+                className="px-4 py-2 mt-1 text-white text-left hover:underline"
+                onclick={handleGptSearchClick}
+              >Sign out of Netflix
               </button>
             </div>
           )}

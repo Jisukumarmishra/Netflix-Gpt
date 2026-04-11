@@ -9,8 +9,6 @@ import GptSearch from './GptSearch';
 
 const Browse = () => {
 
-  <GptSearch/>
-
  useNowPlayingMovies();
  usePopularMovies();
  useTopRatedMovies();
@@ -19,6 +17,7 @@ const Browse = () => {
   return (
     <div>
       <Header/>
+      <GptSearch/>
       <MainContainer/>
       <SecondaryConatainer/>
     </div>
