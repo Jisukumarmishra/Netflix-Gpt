@@ -7,7 +7,7 @@ const MainContainer = () => {
   // fetch the mpovies form store
   const movies = useSelector(store =>store.movies?.nowPlayingMovies);
   // if(movies === null) return ; or
-  if(!movies) return;
+  if (!movies || movies.length === 0) return null;
   const mainmovies = movies[1];
  
   

@@ -2,7 +2,7 @@ import React from 'react'
 
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="w-screen aspect-video pt-[15%] md:pt-[20%] px-6 md:px-16 lg:px-24 absolute z-10 text-white bg-gradient-to-r from-black/90 via-black/50 to-transparent">
+    <div className="py-6 w-screen aspect-video pt-[15%] md:pt-[20%] px-6 md:px-16 lg:px-24 absolute z-10 text-white bg-gradient-to-r from-black/90 via-black/50 to-transparent">
       <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold drop-shadow-2xl w-full md:w-1/2">
         {title}
       </h1>
@@ -24,8 +24,8 @@ const VideoTitle = ({ title, overview }) => {
           </svg>
           More Info
         </button>
+        </div>
       </div>
-    </div>
   );
 };
 
