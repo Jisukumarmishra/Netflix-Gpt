@@ -4,13 +4,26 @@
 
  export const MAIN_PAGE = "https://assets.nflxext.com/ffe/siteui/vlv3/eb110559-67e9-40ec-8f1c-4a45b9f9c9bb/web/IN-en-20260309-TRIFECTA-perspective_6796824d-3538-42c9-95e0-baabc0fdbadf_large.jpg";
 
+const TMDB_BEARER_TOKEN = process.env.REACT_APP_TMDB_BEARER_TOKEN;
+
+if (!TMDB_BEARER_TOKEN) {
+  console.warn("Missing REACT_APP_TMDB_BEARER_TOKEN. TMDB requests will fail until it is set in your environment.");
+}
+
  export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer REDACTED_TMDB_TOKEN'
+    Authorization: `Bearer ${TMDB_BEARER_TOKEN || ""}`
   }
 };
 
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const SUPPORTED_LANGUAGES = [
+  {identifier : "en", name :"English"},
+  {identifier : "hindi", name :"Hindi"},
+  {identifier : "japanese",name :"Japenese"},
+  {identifier : "spanish", name :"Spanish"}
+];

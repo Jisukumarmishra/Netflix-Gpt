@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from 'Utils/userSlice';
 import { auth } from 'Utils/fireBase';
-import { netLOGO, USER_AVTAR } from 'Utils/constants';
+import { netLOGO, SUPPORTED_LANGUAGES, USER_AVTAR } from 'Utils/constants';
 import { toggleGptSearchView } from 'Utils/gptSlice';
 
 
@@ -79,6 +79,13 @@ const handleGptSearchClick = () => {
 
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-48 bg-black bg-opacity-90 border border-gray-700 rounded-sm shadow-xl flex flex-col py-2 text-sm">
+              <select>
+                {SUPPORTED_LANGUAGES.map(lang => <option key = {lang.identifier} value="en">{lang.name}</option> )}
+                
+                <option value ="hindi">Hindi</option>
+                <option value ="japanese">Japanese</option>
+                <option value = "spanish">Spanish</option>
+              </select>
               <button
                 onClick={handleGptSearchClick}
                 className="px-4 py-2 bg-black text-white text-left hover:underline font-bold"
