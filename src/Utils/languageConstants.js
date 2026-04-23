@@ -9,7 +9,7 @@ const lang = {
   gptSearchPlaceholder:"आज आप क्या देखना चाहेंगे?"
   },
 
-  japnese : {
+  japanese : {
   search : "検索",
   gptSearchPlaceholder:" 今日は何をご覧になりたいですか？"
   },

@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from 'Utils/userSlice';
 import { auth } from 'Utils/fireBase';
 import { netLOGO, SUPPORTED_LANGUAGES, USER_AVTAR } from 'Utils/constants';
-import { toggleGptSearchView } from 'Utils/gptSlice';
+import { changeLanguage, toggleGptSearchView } from 'Utils/gptSlice';
 
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt?.showGptSearch);
+  const selectedLanguage = useSelector((store) => store.gpt?.selectedLanguage || "en");
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleSignOut = () => {
@@ -51,6 +53,11 @@ const Header = () => {
 const handleGptSearchClick = () => {
   // Toggle GPT Search
   dispatch(toggleGptSearchView());
+  setShowDropdown(false);
+}
+
+const handleLanguageChange = (e) => {
+  dispatch(changeLanguage(e.target.value));
 }
 
   const toggleDropdown = () => {
@@ -64,7 +71,20 @@ const handleGptSearchClick = () => {
         alt="logo"
       />
       {user && (
-        <div className="relative">
+        <div className="relative flex items-center gap-3">
+          {showGptSearch && (
+            <select
+              className='p-2 bg-black text-white border border-gray-600 rounded-md'
+              value={selectedLanguage}
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((language) => (
+                <option key={language.identifier} value={language.identifier}>
+                  {language.name}
+                </option>
+              ))}
+            </select>
+          )}
           <div 
             className="flex items-center gap-2 p-2 cursor-pointer hover:bg-gray-800 rounded-md transition-colors"
             onClick={toggleDropdown}
@@ -78,17 +98,10 @@ const handleGptSearchClick = () => {
           </div>
 
           {showDropdown && (
-            <div className="absolute right-0 mt-2 w-48 bg-black bg-opacity-90 border border-gray-700 rounded-sm shadow-xl flex flex-col py-2 text-sm">
-              <select>
-                {SUPPORTED_LANGUAGES.map(lang => <option key = {lang.identifier} value="en">{lang.name}</option> )}
-                
-                <option value ="hindi">Hindi</option>
-                <option value ="japanese">Japanese</option>
-                <option value = "spanish">Spanish</option>
-              </select>
+            <div className="absolute top-full right-0 mt-2 z-50 w-48 bg-black bg-opacity-90 border border-gray-700 rounded-sm shadow-xl flex flex-col py-2 text-sm">
               <button
                 onClick={handleGptSearchClick}
-                className="px-4 py-2 bg-black text-white text-left hover:underline font-bold"
+                className="px-4 py-2 text-white text-left hover:underline font-bold"
               >
                 GPT Search
               </button>
