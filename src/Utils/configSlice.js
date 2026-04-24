@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { changeLanguage } from "./gptSlice";
 
 const configSlice = createSlice({
   name : "config",
@@ -8,7 +7,10 @@ const configSlice = createSlice({
   },
   reducers : {
     changeLanguage : (state, action ) => {
-    
-    }
-  }
-})
+    state.lang = action.payload;
+    },
+  },
+});
+
+export const { changeLanguage } = configSlice.actions;
+export default configSlice.reducer;
