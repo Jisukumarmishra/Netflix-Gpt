@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from 'Utils/userSlice';
 import { auth } from 'Utils/fireBase';
 import { netLOGO, SUPPORTED_LANGUAGES, USER_AVTAR } from 'Utils/constants';
-import { changeLanguage, toggleGptSearchView } from 'Utils/gptSlice';
+import { toggleGptSearchView } from 'Utils/gptSlice';
+import { changeLanguage } from 'Utils/configSlice';
 
 
 const Header = () => {
@@ -13,7 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt?.showGptSearch);
-  const selectedLanguage = useSelector((store) => store.gpt?.selectedLanguage || "en");
+  const selectedLanguage = useSelector((store) => store.config?.lang || "en");
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleSignOut = () => {
@@ -48,7 +49,7 @@ const Header = () => {
 
   // unsubscribe when component
   return () => unsubscribe(); // we will unsubscribe it when my header component is unload
-}, []);
+}, [dispatch, navigate]);
 
 const handleGptSearchClick = () => {
   // Toggle GPT Search
@@ -72,6 +73,7 @@ const handleLanguageChange = (e) => {
       />
       {user && (
         <div className="relative flex items-center gap-3">
+          
           {showGptSearch && (
             <select
               className='p-2 bg-black text-white border border-gray-600 rounded-md'
@@ -85,6 +87,8 @@ const handleLanguageChange = (e) => {
               ))}
             </select>
           )}
+
+
           <div 
             className="flex items-center gap-2 p-2 cursor-pointer hover:bg-gray-800 rounded-md transition-colors"
             onClick={toggleDropdown}
@@ -103,7 +107,7 @@ const handleLanguageChange = (e) => {
                 onClick={handleGptSearchClick}
                 className="px-4 py-2 text-white text-left hover:underline font-bold"
               >
-                GPT Search
+                {showGptSearch? "Home Page" : "GPT Search"}
               </button>
               <button className="px-4 py-2 text-white text-left hover:underline">Manage Profiles</button>
               <button className="px-4 py-2 text-white text-left hover:underline">Account</button>

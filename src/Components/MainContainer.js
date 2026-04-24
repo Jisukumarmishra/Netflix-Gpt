@@ -8,7 +8,7 @@ const MainContainer = () => {
   const movies = useSelector(store =>store.movies?.nowPlayingMovies);
   // if(movies === null) return ; or
   if (!movies || movies.length === 0) return null;
-  const mainmovies = movies[1];
+  const mainmovies = movies[0];
  
   
   // from main movies we abstracted these two thinga

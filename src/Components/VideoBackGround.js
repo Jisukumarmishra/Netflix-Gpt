@@ -7,11 +7,13 @@ const VideoBackGround = ({ movieid }) => {
 
   useMoviesTrailer(movieid);
 
+  if (!trailervideo?.key) return null;
+
   return (
     <div className='relative w-screen overflow-hidden bg-black'>
       <iframe
       className='aspect-video w-screen scale-[1.35] md:scale-[1.2] lg:scale-[1.1]'
-        src={"https://www.youtube.com/embed/" + trailervideo?.key+"?&autoplay=1&mute=1"}
+        src={"https://www.youtube.com/embed/" + trailervideo?.key+"?&autoplay=1&mute=1"} //&mute=1
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
