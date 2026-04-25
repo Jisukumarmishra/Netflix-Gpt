@@ -27,3 +27,5 @@ export const SUPPORTED_LANGUAGES = [
   {identifier : "japanese",name :"Japenese"},
   {identifier : "spanish", name :"Spanish"}
 ];
+
+const OPEN_API_KEY = process.env.REACT_APP_OPEN_API_KEY;
