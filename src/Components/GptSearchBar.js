@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import lang from 'Utils/languageConstants'
 import { useSelector } from 'react-redux'
 import { createChatCompletion } from 'Utils/openai'
+import { API_OPTIONS } from 'Utils/constants'
 
 const GptSearchBar = () => {
   const langKey = useSelector((store) => store.config.lang);
@@ -9,22 +10,40 @@ const GptSearchBar = () => {
   // const translatedText = lang[selectedLanguage] || lang.en;
   const searchText = useRef(null);
 
+  // search movies in TMDB
+  const searchMoviesTMDB = async (movie) => {
+  const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movie)}&include_adult=false&language=en-US&page=1`, API_OPTIONS
+  );
+
+  const json = await data.json()
+
+  return json.results;
+  };
+
   const handleGptSearchClick = async () => {
     const query = searchText.current?.value?.trim();
     if (!query) return;
 
-    const prompt = `Act as a movie recommendation system. Suggest 5 movies for: ${query}. Return only comma-separated movie names.`;
+    const gptQuery =
+      'Act as a Movie Recommendation system and suggest some movies for the query: ' +
+      query +
+      '. Only give me names of 5 movies, comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya';
+    const gptResults = await createChatCompletion([
+      {
+        role: 'user',
+        content: gptQuery,
+      },
+    ]);
 
-    try {
-      const result = await createChatCompletion([
-        { role: 'user', content: prompt }
-      ]);
+    const gptMovies = gptResults?.choices?.[0]?.message?.content
+      ?.split(',')
+      .map((movie) => movie.trim())
+      .filter(Boolean) || [];
+    const promiseArray = gptMovies.map(movie => searchMoviesTMDB(movie));
+    // [promis, promise, promise, promise, promise]
 
-      console.log(result?.choices?.[0]?.message?.content || 'No response');
-    } catch (error) {
-      console.error('API Call Failed:', error);
-      alert(error.message || 'Failed to fetch from API');
-    }
+    const tmdbResults = await Promise.all(promiseArray);
+    console.log(tmdbResults);
   }
 
   return (
@@ -47,4 +66,4 @@ const GptSearchBar = () => {
   )
 }
 
-export default GptSearchBar
+export default GptSearchBar;
