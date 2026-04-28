@@ -1,10 +1,12 @@
 import React, { useRef } from 'react'
 import lang from 'Utils/languageConstants'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { createChatCompletion } from 'Utils/openai'
 import { API_OPTIONS } from 'Utils/constants'
+import { addgptMoviesResult } from 'Utils/gptSlice'
 
 const GptSearchBar = () => {
+  const dispatch = useDispatch();
   const langKey = useSelector((store) => store.config.lang);
   // const selectedLanguage = useSelector((store) => store.gpt?.selectedLanguage || "en");
   // const translatedText = lang[selectedLanguage] || lang.en;
@@ -44,6 +46,9 @@ const GptSearchBar = () => {
 
     const tmdbResults = await Promise.all(promiseArray);
     console.log(tmdbResults);
+    dispatch(addgptMoviesResult(tmdbResults));
+
+
   }
 
   return (
