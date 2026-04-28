@@ -24,3 +24,5 @@ MoviesList -- Trending
 ...
 
 # Building GPT Search Features
+
+# Afeter Clicking The Search Button Add Shimmer Ui
