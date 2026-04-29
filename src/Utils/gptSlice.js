@@ -15,9 +15,10 @@ const gptSlice = createSlice({
     changeLanguage: (state, action) => {
       state.selectedLanguage = action.payload;
     },
+
     addgptMoviesResult:(state, action) => {
       const {moviesNames, moviesResults} = action.payload
-    state.moviesNames = moviesResults;
+    state.moviesNames = moviesNames;
     state.moviesResults = moviesResults;
     }
   },
