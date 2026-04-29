@@ -46,7 +46,7 @@ const GptSearchBar = () => {
 
     const tmdbResults = await Promise.all(promiseArray);
     console.log(tmdbResults);
-    dispatch(addgptMoviesResult(tmdbResults));
+    dispatch(addgptMoviesResult({moviesNames: gptMovies, moviesResults:tmdbResults})); // passing an object
 
 
   }
