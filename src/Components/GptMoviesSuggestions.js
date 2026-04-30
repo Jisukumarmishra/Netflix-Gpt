@@ -7,7 +7,7 @@ const GptMoviesSuggestions = () => {
   const {moviesNames, moviesResults, isLoading} = useSelector((Store) => Store.gpt);
   if(!moviesNames && !isLoading) return null;
   return (
-    <div className='p-10 m-4 bg-black text-green-400'>
+    <div className='p-10 m-4 bg-black bg-opacity-70'>
      <div>
       {isLoading ? (
         // show skeletons while loading

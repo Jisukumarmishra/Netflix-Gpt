@@ -32,10 +32,11 @@ const MoviesCard = ({ posterpath }) => {
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="bg-black bg-opacity-20 rounded-md overflow-hidden transform-gpu transition-transform duration-500 ease-out"
+        className="relative h-52 md:h-72 bg-black rounded-md overflow-hidden transform-gpu transition-transform duration-500 ease-out"
         style={{ transform }}
       >
-        <img className="w-full h-auto block" alt="Movies Card" src={IMG_CDN_URL + posterpath} />
+        <img className="w-full h-full object-cover block" alt="Movies Card" src={IMG_CDN_URL + posterpath} />
+        <div className="absolute inset-0 bg-black bg-opacity-20 pointer-events-none" />
       </div>
     </div>
   );
