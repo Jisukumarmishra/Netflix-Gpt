@@ -3,7 +3,7 @@ import lang from 'Utils/languageConstants'
 import { useDispatch, useSelector } from 'react-redux'
 import { createChatCompletion } from 'Utils/openai'
 import { API_OPTIONS } from 'Utils/constants'
-import { addgptMoviesResult } from 'Utils/gptSlice'
+import { addgptMoviesResult, setGptLoading } from 'Utils/gptSlice'
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,8 @@ const GptSearchBar = () => {
   const handleGptSearchClick = async () => {
     const query = searchText.current?.value?.trim();
     if (!query) return;
-
+    dispatch(setGptLoading(true));
+    try {
     const gptQuery =
       'Act as a Movie Recommendation system and suggest some movies for the query: ' +
       query +
@@ -47,7 +48,11 @@ const GptSearchBar = () => {
     const tmdbResults = await Promise.all(promiseArray);
     console.log(tmdbResults);
     dispatch(addgptMoviesResult({moviesNames: gptMovies, moviesResults:tmdbResults})); // passing an object
-
+    } catch (err) {
+      console.error('GPT search error', err);
+    } finally {
+      dispatch(setGptLoading(false));
+    }
 
   }
 
