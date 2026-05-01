@@ -23,12 +23,16 @@ const gptSlice = createSlice({
     state.moviesResults = moviesResults;
     }
     ,
+    clearGptMoviesResult: (state) => {
+      state.moviesNames = null;
+      state.moviesResults = null;
+    },
     setGptLoading: (state, action) => {
       state.isLoading = action.payload;
     }
   },
 });
 
-export const {toggleGptSearchView, changeLanguage, addgptMoviesResult, setGptLoading} = gptSlice.actions; // export an action
+export const {toggleGptSearchView, changeLanguage, addgptMoviesResult, clearGptMoviesResult, setGptLoading} = gptSlice.actions; // export an action
 
 export default gptSlice.reducer; // export reducer

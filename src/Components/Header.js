@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from 'Utils/userSlice';
 import { auth } from 'Utils/fireBase';
 import { netLOGO, SUPPORTED_LANGUAGES, USER_AVTAR } from 'Utils/constants';
-import { toggleGptSearchView } from 'Utils/gptSlice';
+import { clearGptMoviesResult, toggleGptSearchView } from 'Utils/gptSlice';
 import { changeLanguage } from 'Utils/configSlice';
 
 
@@ -52,6 +52,9 @@ const Header = () => {
 }, [dispatch, navigate]);
 
 const handleGptSearchClick = () => {
+  if (!showGptSearch) {
+    dispatch(clearGptMoviesResult());
+  }
   // Toggle GPT Search
   dispatch(toggleGptSearchView());
   setShowDropdown(false);
