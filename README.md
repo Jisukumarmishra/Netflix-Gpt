@@ -26,3 +26,6 @@ MoviesList -- Trending
 # Building GPT Search Features
 
 # Afeter Clicking The Search Button Add Shimmer Ui
+
+# Plannig To Afer Click On the Movies Component Its Show the AL movies Trailer And Description Release Date Etc
+# Make An Page Resposible For All Phone Tablet 
